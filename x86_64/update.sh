@@ -15,4 +15,4 @@
 #
 ##################################################################################################################
 
-repo-add teaching_repo.db.tar.gz *.pkg.tar.xz
+repo-add thefifth_repo.db.tar.gz *.pkg.tar.xz
