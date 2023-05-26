@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>al.fifthgnu.ouroborosgui.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <description>
+    <p>No description</p>
+    <p xml:lang="az">Təsvirsiz</p>
+    <p xml:lang="it">Nessuna descrizione</p>
+    <p xml:lang="cs">Žádný popis</p>
+    <p xml:lang="tr">Açıklama yok</p>
+    <p xml:lang="pt_BR">Sem descrição</p>
+    <p xml:lang="es">Sin descripción</p>
+    <p xml:lang="de">Keine Beschreibung</p>
+    <p xml:lang="uk">Без опису</p>
+    <p xml:lang="sv">Ingen beskrivning</p>
+    <p xml:lang="ru">Нет описания</p>
+  </description>
+</component>

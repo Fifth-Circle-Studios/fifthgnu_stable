@@ -1,0 +1,554 @@
+{
+    "log_file": "/etc/vanilla/first-setup.log",
+    "distro_name": "Vanilla OS",
+    "distro_logo": "org.vanillaos.FirstSetup", 
+    "pre_run": [
+        "export DEBIAN_FRONTEND=noninteractive",
+        "apt update", 
+        "apt install -f",
+        "apt upgrade -y"
+    ],
+    "post_run": [
+        "apt update", 
+        "apt install -f"
+    ],
+    "tour": {
+        "get-involved": {
+             "icon": "system-users-symbolic",
+             "title": "Get Involved",
+             "description": "Vanilla OS is a community project. You can contribute to the project by reporting bugs, suggesting new features, or even by writing code.",
+             "read_more_link": "https://vanillaos.org/get-involved"
+        },
+        "community": {
+             "icon": "help-faq-symbolic",
+             "title": "Join The Community",
+             "description": "Our community is active on Discord. You can join us to ask questions, get help, or just to chat with other users.",
+             "read_more_link": "https://discord.gg/3cD2Q7Ht3S"
+        },
+        "abroot": {
+             "icon": "security-medium-symbolic",
+             "title": "Immutable and Atomic",
+             "description": "Vanilla OS is an immutable and atomic Linux distribution. It is based on Debian and uses ABRoot to provide atomic transactions.",
+             "read_more_link": "https://documentation.vanillaos.org/docs/ABRoot/"
+        },
+        "apx": {
+             "icon": "vanilla-container-terminal-symbolic",
+             "title": "Sub-System Ready To Go",
+             "description": "Vanilla OS comes with Apx, a new package manager which installs software in integrated containers to prevent host compromise.",
+             "read_more_link": "https://documentation.vanillaos.org/docs/apx/"
+        }
+    },
+    "steps": {
+        "conn-check": {
+            "template": "conn-check",
+            "protected": true
+        },
+        "welcome": {
+            "template": "welcome",
+            "protected": true
+        },
+        "theme": {
+            "template": "theme"
+        },
+        "user": {
+            "template": "user",
+            "new-user-only": true
+        },
+        "hostname": {
+            "template": "hostname",
+            "new-user-only": true
+        },
+        "packages": {
+            "template": "preferences",
+            "is-advanced": true,
+            "icon": "vanilla-package-symbolic",
+            "title": "Package Manager",
+            "description": "Choose one or more package managers to install",
+            "preferences": [
+                {
+                    "id": "flatpak",
+                    "title": "Flatpak",
+                    "subtitle": "Manage and configure Flatpaks and the Flathub repository.",
+                    "default": true
+                },
+                {
+                    "id": "snap",
+                    "title": "Snap",
+                    "subtitle": "Manage and configure Snaps and the Snapcraft repository.",
+                    "disabled": true
+                },
+                {
+                    "id": "appimage",
+                    "title": "AppImage",
+                    "subtitle": "Install necessary dependencies to run AppImages.",
+                    "default": true
+                },
+                {
+                    "id": "-",
+                    "title": "-",
+                    "subtitle": "-",
+                    "disabled": true,
+                    "default": true
+                }
+            ],
+            "final": [
+                {
+                    "if": "flatpak",
+                    "type": "command",
+                    "commands": [
+                        "apt install -y flatpak gnome-software-plugin-flatpak",
+                        "!nextBoot flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo"
+                    ]
+                },
+                {
+                    "if": "snap",
+                    "type": "command",
+                    "commands": ["apt install -y snapd"]
+                },
+                {
+                    "if": "appimage",
+                    "type": "command",
+                    "commands": [
+                        "apt install -y software-properties-common",
+                        "add-apt-repository --yes ppa:appimagelauncher-team/stable",
+                        "apt install -y fuse3 libfuse2 appimagelauncher"
+                    ]
+                }
+            ]
+        },
+        "apps": {
+            "template": "applications",
+            "icon": "org.gnome.Software-symbolic",
+            "title": "Applications",
+            "description": "Choose which applications to install.",
+            "bundles": [
+                {
+                    "id": "core-apps",
+                    "title": "Core Applications",
+                    "subtitle": "Essential GNOME apps like Calendar or Document Viewer.",
+                    "default": true,
+                    "applications" : [
+                        {
+                            "name" : "Calendar",
+                            "icon" :  "org.gnome.Calendar",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Characters",
+                            "icon" :  "org.gnome.Characters",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Cheese",
+                            "icon" :  "org.gnome.Cheese",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Clocks",
+                            "icon" :  "org.gnome.clocks",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Connections",
+                            "icon" :  "org.gnome.Connections",
+                            "flatpak" : true 
+                        },
+                        {
+                            "name" : "Contacts",
+                            "icon" :  "org.gnome.Contacts",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Disk Usage Analyzer",
+                            "icon" :  "org.gnome.baobab",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Document Viewer",
+                            "icon" :  "org.gnome.Evince",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Fonts",
+                            "icon" :  "org.gnome.font-viewer",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Image Viewer",
+                            "icon" :  "org.gnome.eog",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Logs",
+                            "icon" :  "org.gnome.Logs",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Maps",
+                            "icon" :  "org.gnome.Maps",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Text Editor",
+                            "icon" :  "org.gnome.TextEditor",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Weather",
+                            "icon" :  "org.gnome.Weather",
+                            "flatpak" : true,
+                            "snap" : true
+                        }
+                    ]
+                },
+                {
+                    "id": "office",
+                    "title": "Office",
+                    "subtitle": "The LibreOffice suite.",
+                    "default": false,
+                    "applications" : [
+                        {
+                            "name" : "LibreOffice",
+                            "icon" : "org.libreoffice.LibreOffice",
+                            "flatpak": true,
+                            "snap" : true
+                        }
+                    ]
+                },
+                {
+                    "id": "utilities",
+                    "title": "Common Utilities",
+                    "subtitle": "Useful utilities like Bottles or Sound Recorder.",
+                    "default": false,
+                    "applications" : [
+                        {
+                            "name" : "Bottles",
+                            "icon" :  "com.usebottles.bottles",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Heroic Games Launcher",
+                            "icon" :  "com.heroicgameslauncher.hgl",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Lutris",
+                            "icon" :  "net.lutris.Lutris",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Boxes",
+                            "icon" :  "org.gnome.Boxes",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Déjà Dup Backups",
+                            "icon" :  "org.gnome.DejaDup",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Flatseal",
+                            "icon" :  "com.github.tchx84.Flatseal",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Metadata Cleaner",
+                            "icon" :  "fr.romainvigier.MetadataCleaner",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Rnote",
+                            "icon" : "com.github.flxzt.rnote",
+                            "flatpak" : true
+                        },
+                        {
+                            "name" : "Shortwave",
+                            "icon" : "de.haeckerfelix.Shortwave",
+                            "flatpak" : true,
+                            "snap" : true
+                        },
+                        {
+                            "name" : "Sound Recorder",
+                            "icon" : "org.gnome.SoundRecorder",
+                            "flatpak" : true
+                        }
+                    ]
+                }
+            ],
+            "final": [
+                {
+                    "if" : "Calendar",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Calendar"]
+                },
+                {
+                    "if" : "Characters",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Characters || snap install gnome-characters"]
+                },
+                {
+                    "if" : "Cheese",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Cheese || snap install cheese"]
+                },
+                {
+                    "if" : "Clocks",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.clocks || snap install gnome-clocks"]
+                },
+                {
+                    "if" : "Connections",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Connections"]
+                },
+                {
+                    "if" : "Contacts",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Contacts || snap install gnome-contacts"]
+                },
+                {
+                    "if" : "Disk Usage Analyzer",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.baobab"]
+                },
+                {
+                    "if" : "Document Viewer",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Evince || snap install evince"]
+                },         
+                {
+                    "if" : "Fonts",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.font-viewer"]
+                },
+                {
+                    "if" : "Image Viewer",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.eog || snap install eog"]
+                },
+                {
+                    "if" : "Logs",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Logs || snap install gnome-logs"]
+                },
+                {
+                    "if" : "Maps",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Maps"]
+                },
+                {
+                    "if" : "Text Editor",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.TextEditor"]
+                },
+                {
+                    "if" : "Weather",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Weather || snap install gnome-weather"]
+                },
+                {
+                    "if" : "LibreOffice",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.libreoffice.LibreOffice || snap install libreoffice"]
+                },
+                {
+                    "if" : "Bottles",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y com.usebottles.bottles"]
+                },
+                {
+                    "if" : "Heroic Games Launcher",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y com.heroicgameslauncher.hgl"]
+                },
+                {
+                    "if" : "Lutris",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y net.lutris.Lutris"]
+                },
+                {
+                    "if" : "Boxes",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.Boxes || snap install gnome-boxes"]
+                },
+                {
+                    "if" : "Déjà Dup Backups",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.DejaDup || snap install deja-dup"]
+                },
+                {
+                    "if" : "Flatseal",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y com.github.tchx84.Flatseal"]
+                },
+                {
+                    "if" : "Metadata Cleaner",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y fr.romainvigier.MetadataCleaner"]
+                },
+                {
+                    "if" : "Rnote",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y com.github.flxzt.rnote"]
+                },
+                {
+                    "if" : "Shortwave",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y de.haeckerfelix.Shortwave || snap install shortwave"]
+                },
+                {
+                    "if" : "Sound Recorder",
+                    "type" :  "command",
+                    "commands" : ["!nextBoot flatpak install -y org.gnome.SoundRecorder"]
+                }
+            ]
+        },
+        "timeshift": {
+            "template": "yes-no",
+            "is-advanced": true,
+            "preset": false,
+            "icon": "vanilla-history-undo-symbolic",
+            "title": "Timeshift",
+            "description": "Choose whether to install Timeshift to create snapshots of your system.",
+            "buttons": {
+                "yes": "Install",
+                "no": "Skip",
+                "info": {
+                    "type": "text",
+                    "title": "Timeshift",
+                    "text": "Timeshift for Linux is an application that provides functionality similar to the System Restore feature in Windows and the Time Machine tool in Mac OS. Timeshift protects your system by taking incremental snapshots of the file system at regular intervals. These snapshots can be restored at a later date to undo all changes to the system.\n\nIn RSYNC mode, snapshots are taken using rsync and hard-links. Common files are shared between snapshots which saves disk space. Each snapshot is a full system backup that can be browsed with a file manager.\n\nIn BTRFS mode, snapshots are taken using the in-built features of the BTRFS filesystem. BTRFS snapshots are supported only on BTRFS systems having an Ubuntu-type subvolume layout (with @ and @home subvolumes)."
+                }
+            },
+            "final": [
+                {
+                    "if": "timeshift",
+                    "type": "command",
+                    "commands": ["apt install -y timeshift"]
+                }
+            ]
+        },
+        "nvidia": {
+            "template": "yes-no",
+            "is-advanced": true,
+            "preset": false,
+            "display-conditions": [
+                "lspci | grep -i '.* nvidia .*'"
+            ],
+            "icon": "video-display-symbolic",
+            "title": "NVIDIA® Drivers",
+            "description": "Choose whether to install proprietary NVIDIA drivers for better compatibility and performance.",
+            "buttons": {
+                "yes": "Yes, install",
+                "no": "Skip",
+                "info": {
+                    "type": "text",
+                    "title": "About Proprietary Drivers",
+                    "text": "A proprietary driver has private code that neither Vanilla OS nor Debian developers can review.\n\nSecurity and other updates are dependent on the driver vendor."
+                }
+            },
+            "final": [
+                {
+                    "if": "nvidia",
+                    "type": "command",
+                    "commands": [
+                        "apt install -y linux-headers-$(uname -r) nvidia-prime",
+                        "ikaros auto-install"
+                    ]
+                }
+            ]
+        },
+        "vm": {
+            "template": "yes-no",
+            "is-advanced": true,
+            "preset": true,
+            "display-conditions": [
+                "grep 'hypervisor' /proc/cpuinfo"
+            ],
+            "icon": "application-x-appliance-symbolic",
+            "title": "Open VM Tools",
+            "description": "Choose whether to install Open VM Tools for the virtual machine.",
+            "buttons": {
+                "yes": "Install",
+                "no": "Skip",
+                "info": {
+                    "type": "text",
+                    "title": "About Open VM Tools",
+                    "text": "Install Open VM Tools for seamless integration with Virtual machines."
+                }
+            },
+            "final": [
+                {
+                    "if": "vm",
+                    "type": "command",
+                    "commands": ["apt install -y open-vm-tools open-vm-tools-desktop"]
+                }
+            ]
+        },
+        "codecs": {
+            "template": "yes-no",
+            "is-advanced": true,
+            "preset": true,
+            "icon": "vanilla-puzzle-piece-symbolic",
+            "title": "Proprietary Codecs",
+            "description": "Choose whether to install proprietary codecs and fonts.",
+            "buttons": {
+                "yes": "Install",
+                "no": "Skip",
+                "info": {
+                    "type": "text",
+                    "title": "About Proprietary Codecs",
+                    "text": "Install proprietary drivers, fonts and other essentials from the Debian repositories."
+                }
+            },
+            "final": [
+                {
+                    "if": "codecs",
+                    "type": "command",
+                    "commands": ["apt install -y libavcodec-extra gstreamer1.0-fluendo-mp3 gstreamer1.0-libav gstreamer1.0-plugins-ugly gstreamer1.0-vaapi libavcodec-extra ttf-mscorefonts-installer unrar"]
+                }
+            ]
+        },
+        "extra": {
+            "template": "preferences",
+            "is-advanced": true,
+            "icon": "dialog-warning-symbolic",
+            "title": "Extra Settings",
+            "description": "The following are optional settings, leave them as they are if you don't know what they do.",
+            "preferences": [
+                {
+                    "id": "apport",
+                    "title": "Apport",
+                    "subtitle": "Apport is a crash reporting system that helps us improve the stability of the system."
+                }
+            ],
+            "final": [
+                {
+                    "if": "apport",
+                    "type": "command",
+                    "commands": [
+                        "apt install -y apport",
+                        "systemctl enable apport.service || true"
+                    ]
+                },
+                {
+                    "if": "apport",
+                    "condition": false,
+                    "type": "command",
+                    "commands": [
+                        "apt remove -y apport",
+                        "systemctl disable apport.service || true"
+                    ]
+                }
+            ]
+        }
+    }
+}
