@@ -60,7 +60,7 @@ Presentation
 
     Image {
         id: background2
-        source: "2-alci.png"
+        source: "2-fifthgnu.png"
         width: parent.width; height: parent.height
         horizontalAlignment: Image.AlignCenter
         verticalAlignment: Image.AlignTop
