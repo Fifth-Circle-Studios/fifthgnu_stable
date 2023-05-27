@@ -1,7 +1,7 @@
 format = 2
 pkgname = ouroboros-gui
 pkgbase = ouroboros-gui
-pkgver = 0.0.1-0
+pkgver = 0.0.1-1
 pkgarch = x86_64
 pkgbuild_sha256sum = be5d74c7580bb74f441f3bcc0c64912e00afd049a442c38b597949bd0f4d13b6
 packager = Unknown Packager

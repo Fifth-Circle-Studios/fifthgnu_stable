@@ -2,7 +2,7 @@
 # using fakeroot version 1.31
 pkgname = ouroboros-gui
 pkgbase = ouroboros-gui
-pkgver = 0.0.1-0
+pkgver = 0.0.1-1
 pkgdesc = Libadwaita based GUI front-end for Ouroboros
 url = https://git.getcryst.al/crystal/software/jade-gui
 builddate = 1678957737
