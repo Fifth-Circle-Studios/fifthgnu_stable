@@ -17,7 +17,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-
+import sys
+import gi 
+gi.require_version("Gtk", "4.0")
 from gi.repository import Gtk, Adw
 from gettext import gettext as _
 import requests
