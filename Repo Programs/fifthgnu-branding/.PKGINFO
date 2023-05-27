@@ -3,7 +3,7 @@
 pkgname = fifthgnu-branding
 pkgbase = fifthgnu-branding
 pkgver = 2023.05.26-1
-pkgdesc = fifthgnu Linux branding
+pkgdesc = Fifth Circle GNU branding
 builddate = 1676992204
 packager = Unknown Packager
 size = 3806
