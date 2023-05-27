@@ -1,0 +1,7 @@
+NAME="Fifth Circle GNU"
+PRETTY_NAME="Fifth Circle GNU"
+ID=fifthgnu
+BUILD_ID=rolling
+HOME_URL="https://getcryst.al"
+LOGO=fifthgnu-logo
+ANSI_COLOR="0;35"
