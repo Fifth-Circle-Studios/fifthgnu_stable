@@ -2,7 +2,7 @@
 # using fakeroot version 1.31
 pkgname = fcgnu-calamares-config-btrfs-zen
 pkgbase = fcgnu-calamares-config-btrfs-zen
-pkgver = 23.05-03
+pkgver = 23.05-27
 pkgdesc = calamares for Fifth Circle GNU
 url = https://github.com/arch-linux-calamares-installer
 builddate = 1683701570

@@ -1,7 +1,7 @@
 format = 2
 pkgname = fcgnu-calamares-config-btrfs-zen
 pkgbase = fcgnu-calamares-config-btrfs-zen
-pkgver = 23.05-03
+pkgver = 23.05-27
 pkgarch = any
 pkgbuild_sha256sum = f977f23f965179a4c11e3f05fcb3c935696bb6d43a22bf6ee492d34e76b8b587
 packager = Unknown Packager
