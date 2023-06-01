@@ -1,5 +1,0 @@
-subprojects/blueprint-compiler
-build/
-.flatpak-builder/
-node_modules/
-.idea/
