@@ -1,0 +1,21 @@
+[Desktop Entry]
+Name[ru]=Установить Fifth Circle GNU
+Name[sv]=Installera Fifth Circle GNU
+Name[uk]=Встановіть Fifth Circle GNU
+Name[de]=Fifth Circle GNU installieren
+Name[es]=Instalar Fifth Circle GNU
+Name[pt_BR]=Instalar Fifth Circle GNU
+Name[tr]=Fifth Circle GNU'u Kurun
+Name[cs]=Instalovat Fifth Circle GNU
+Name[it]=Installa Fifth Circle GNU
+Name[az]=Fifth Circle GNU quraşdırın
+Name=Install Fifth Circle GNU
+
+Exec=ouroboros-gui
+
+Icon=al.fifthgnu.ouroborosgui
+
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
